@@ -1,7 +1,5 @@
 package task2;
 
-import java.util.StringTokenizer;
-
 public class Entry {
 
     private String streetName;
@@ -9,10 +7,10 @@ public class Entry {
     private String houseClass;
 
     public Entry(String text) {
-        StringTokenizer st = new StringTokenizer(text, "|");
-        this.streetName = st.nextToken().trim();
-        this.numberOfResident =Integer.parseInt(st.nextToken().trim());
-        this.houseClass = st.nextToken().trim();
+        String [] values = text.split("\\|");
+        this.streetName = values[0].trim();
+        this.numberOfResident =Integer.parseInt(values[1].trim());
+        this.houseClass = values[2].trim();
     }
 
     @Override
