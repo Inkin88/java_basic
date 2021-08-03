@@ -15,7 +15,7 @@ public class Entry {
 
     @Override
     public String toString() {
-        return  streetName + " | " + numberOfResident + " | " + houseClass;
+        return String.join(" | ", streetName, String.valueOf(numberOfResident), houseClass);
     }
 
     public String getStreetName() {
