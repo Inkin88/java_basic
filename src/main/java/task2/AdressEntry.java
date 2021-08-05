@@ -1,12 +1,12 @@
 package task2;
 
-public class АdressEntry {
+public class AdressEntry {
 
     private String streetName;
     private int numberOfResident;
     private String houseClass;
 
-    public АdressEntry(String text) {
+    public AdressEntry(String text) {
         String [] values = text.split("\\|");
         this.streetName = values[0].trim();
         this.numberOfResident =Integer.parseInt(values[1].trim());
