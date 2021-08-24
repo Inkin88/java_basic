@@ -16,6 +16,7 @@ public class SteamTest extends BaseTest {
             mainPage.selectEngLang();
         }
         mainPage.clickGenreTab();
+        mainPage.clickGenreTab();
         mainPage.isNavigatorDisplayed();
         mainPage.clickActionGenre();
         CategoryPage categoryPage = new CategoryPage();
