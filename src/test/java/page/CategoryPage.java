@@ -1,28 +1,31 @@
 package page;
 
-import org.openqa.selenium.By;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 
-public class CategoryPage extends BasePage {
+public class CategoryPage {
 
-    private static final String ACTION_HEADER_LOC = "//*[@class='pageheader' and contains(text(), 'Action')]";
-    private static final String FIRST_GAME_IN_SLIDE_LOC = "//div[@class = 'carousel_thumbs']/div[1]";
-    private static final String GAME_LOC ="//*[@id='genre_large_cluster']/div[1]";
-    private static final String GAME_PRICE_LOC = "(//div[contains(@class, 'discount_block ')])[1]";
+    SelenideElement actionHeader = $x("//*[@class='pageheader' and contains(text(), 'Action')]");
+    SelenideElement firstGameInSlide = $x("//div[@class = 'carousel_thumbs']/div[1]");
+    SelenideElement game = $x("//*[@id='genre_large_cluster']/div[1]");
+    SelenideElement gamePrice = $x("(//div[contains(@class, 'discount_block ')])[1]");
 
     public void isCategoryNameHeaderDisplayed() {
-        isElementDisplayed(By.xpath(ACTION_HEADER_LOC));
+        actionHeader.shouldBe(Condition.visible);
     }
 
     public void clickToFirstGameInSlide() {
-        click(By.xpath(FIRST_GAME_IN_SLIDE_LOC));
+        firstGameInSlide.click();
     }
 
     public void clickToGame() {
-        click(By.xpath(GAME_LOC));
+        game.click();
     }
 
     public String getPriceOnCategoryPage() {
-        return getAtr(By.xpath(GAME_PRICE_LOC), "data-price-final");
+        return gamePrice.getAttribute("data-price-final");
     }
 }

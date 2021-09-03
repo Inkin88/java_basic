@@ -1,44 +1,44 @@
 package page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
-import page.framework.Browser;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
-public class MainPage extends BasePage {
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.actions;
 
-    private Actions actions = new Actions(Browser.getInstance().getWebDriver());
+public class MainPage {
+
+    SelenideElement genreTab = $x("//div[@id = 'genre_tab']");
+    SelenideElement actionGenre = $x("//a[@class='popup_menu_item' and contains(@href, 'action')]");
+    SelenideElement navigator = $x("//div[@id = 'genre_flyout']");
+    SelenideElement langMenu = $x("//*[@id='language_pulldown']");
+    SelenideElement engLang = $x("//div[@class= 'popup_body popup_menu']//a[contains(text(), 'английский')]");
+    SelenideElement lang = $x("/html[@lang]");
 
     private static final String URL_SITE = "https://store.steampowered.com";
-    private static final String NAVIGATOR_LOC = "//div[@id = 'genre_flyout']";
-    private static final String GENRE_TAB_LOC = "//div[@id = 'genre_tab']";
-    private static final String ACTION_LOC = "//a[@class='popup_menu_item' and contains(@href, 'action')]";
-    private static final String LANG_LOC = "/html[@lang]";
-    private static final String LANG_MENU_LOC = "//*[@id='language_pulldown']";
-    private static final String ENG_LANG_LOC = "//div[@class= 'popup_body popup_menu']//a[contains(text(), 'английский')]";
 
     public void clickGenreTab() {
-        waitVisibility(By.xpath(GENRE_TAB_LOC));
-        actions.moveToElement(driver.findElement(By.xpath(GENRE_TAB_LOC))).click().perform();
+        actions().moveToElement(genreTab).click(genreTab).perform();
     }
 
     public void clickActionGenre() {
-        click(By.xpath(ACTION_LOC));
+        actionGenre.click();
     }
 
     public void isNavigatorDisplayed() {
-        isElementDisplayed(By.xpath(NAVIGATOR_LOC));
+        navigator.shouldBe(Condition.visible);
     }
 
     public void clickLangMenu() {
-        click(By.xpath(LANG_MENU_LOC));
+        langMenu.click();
     }
 
     public void selectEngLang() {
-        click(By.xpath(ENG_LANG_LOC));
+        engLang.click();
     }
 
     public boolean isEngLang() {
-        return getAtr(By.xpath(LANG_LOC), "lang").equals("en");
+       return lang.getAttribute("lang").equals("en");
     }
 
     public static String getUrl() {
