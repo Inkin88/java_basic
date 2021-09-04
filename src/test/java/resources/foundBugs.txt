@@ -1,0 +1,26 @@
+1. Возможно создать класс ElevatorFloors c нулевыми этажами.
+
+public class ElevatorFloors {
+    private int minFloor = 0;
+    private int maxFloor = 0;
+
+    public ElevatorFloors() {}
+Из-за данного конструктора возможно создание объекта с 0ми этажами.
+1.2 В классе Elevator так же есть дефолтный конструктор.
+public class Elevator {
+    private int currentFloor = 1;
+    private ElevatorFloors elevatorFloors = new ElevatorFloors();
+    private boolean doorsOpen = false;
+
+    public Elevator() {}
+
+2. При создании объекта Elevator можно задать параметр int currentFloor больше максимального этажа и меньше минимального.
+3. Метод getAvailableFloors() возвращает список доступных этажей на 1 меньше чем максимальный заданный.
+4. В public void moveElevatorToTheFloor(int destinationFloor) стоит лишний "!".
+   Получается что при закрытых дверях, ловим ошибку о том что двери открыты.
+   if (!areTheDoorsOpen()) {
+               throw new DoorsAreOpenException();
+           }
+5. НЕ выбрасывает исключение FloorOutOfBoundException в методе moveElevatorToTheFloor(int destinationFloor) при
+destinationFloor = 0
+
